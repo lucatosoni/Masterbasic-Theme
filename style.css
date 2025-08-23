@@ -1,0 +1,118 @@
+/*
+Theme Name: Master Basic WP Theme
+Theme URI: https://tosoniluca.it/
+Author: Tuo Nome
+Author URI: https://tosoniluca.it/
+Description: Tema WordPress basilare e pulito con transizioni Barba.js
+Version: 1.0
+License: GNU General Public License v2 or later
+Text Domain: masterbasic-wptheme
+*/
+
+:root {
+    --black-color: #000;
+    --light-color: #d7d7e1; 
+    --white-color: #fff;
+}
+
+* {
+    font-family: "EB Garamond", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    cursor: pointer;
+    font-family: "Space Grotesk", sans-serif !important;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+p {
+    margin: 0;
+}
+
+main, .header-content, .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Space Grotesk", sans-serif !important;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.gap2 {
+    gap: 20px;
+}
+
+.card {
+    height: 200px;
+}
+
+/* CPT card */
+.cpt-card {
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--light-color);
+}
+
+.cpt-image img {
+    object-fit: cover;
+    width: 100%;
+}
+
+/* footer */ 
+footer {
+    background-color: var(--black-color);
+}
+
+footer a, footer p {
+    color: var(--light-color);
+    text-decoration: none;
+    padding-bottom: 1em;
+    display: block;
+}
+
+.footer-content {
+    color: var(--white-color);
+    gap: 2rem;
+}
+
+
+/* Barba.js transition styles */
+.barba-container {
+    min-height: 100vh;
+}
+
+.barba-leave-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.barba-leave-to {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+.barba-enter {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.barba-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
