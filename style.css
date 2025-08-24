@@ -11,7 +11,7 @@ Text Domain: masterbasic-wptheme
 
 :root {
     --black-color: #000;
-    --light-color: #d7d7e1; 
+    --light-color: hsl(0, 0%, 95%); 
     --white-color: #fff;
 }
 
@@ -57,7 +57,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card {
-    height: 200px;
+    height: 100px;
+    background: var(--light-color);
+    flex-grow: 1;
+}
+
+.btn {
+    text-decoration: none;
+    color: var(--black-color);
+    padding: 10px 20px;
+    border: 1px solid var(--black-color);
+    border-radius: 4px;
 }
 
 /* CPT card */
@@ -70,49 +80,4 @@ h1, h2, h3, h4, h5, h6 {
 .cpt-image img {
     object-fit: cover;
     width: 100%;
-}
-
-/* footer */ 
-footer {
-    background-color: var(--black-color);
-}
-
-footer a, footer p {
-    color: var(--light-color);
-    text-decoration: none;
-    padding-bottom: 1em;
-    display: block;
-}
-
-.footer-content {
-    color: var(--white-color);
-    gap: 2rem;
-}
-
-
-/* Barba.js transition styles */
-.barba-container {
-    min-height: 100vh;
-}
-
-.barba-leave-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.barba-leave-to {
-    opacity: 0;
-    transform: translateY(-50px);
-}
-
-.barba-enter {
-    opacity: 0;
-    transform: translateY(50px);
-}
-
-.barba-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s ease, transform 0.5s ease;
 }

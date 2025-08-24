@@ -1,81 +1,39 @@
-// Initialize Barba.js for smooth page transitions
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Initialize Barba
-    barba.init({
-        // Timeout for transitions
-        timeout: 10000,
-        
-        // Views configuration
-        views: [
-            {
-                namespace: 'home',
-                afterEnter() {
-                    // Custom code for homepage
-                    console.log('Entered homepage');
-                },
-                beforeLeave() {
-                    // Custom code before leaving homepage
-                    console.log('Leaving homepage');
-                }
-            },
-            {
-                namespace: 'page',
-                afterEnter() {
-                    // Custom code for pages
-                    console.log('Entered page');
-                }
-            }
-        ],
+document.addEventListener("DOMContentLoaded", function () {
+  // Crea l'overlay nero una sola volta
+  let overlay = document.createElement("div");
+  overlay.style.position = "fixed";
+  overlay.style.top = 0;
+  overlay.style.left = 0;
+  overlay.style.width = "100%";
+  overlay.style.height = "100%";
+  overlay.style.backgroundColor = "#fff";
+  overlay.style.zIndex = 9999;
+  overlay.style.opacity = 0;
+  overlay.style.pointerEvents = "none";
+  document.body.appendChild(overlay);
 
-        // Global hooks
-        transitions: [
-            {
-                name: 'fade',
-                leave(data) {
-                    return new Promise(resolve => {
-                        const tl = gsap.timeline({
-                            onComplete: resolve
-                        });
-                        
-                        tl.to(data.current.container, {
-                            opacity: 0,
-                            y: -50,
-                            duration: 0.5,
-                            ease: "power2.inOut"
-                        });
-                    });
-                },
-                
-                enter(data) {
-                    return new Promise(resolve => {
-                        // Scroll to top
-                        window.scrollTo(0, 0);
-                        
-                        const tl = gsap.timeline({
-                            onComplete: resolve
-                        });
-                        
-                        tl.fromTo(data.next.container, {
-                            opacity: 0,
-                            y: 50
-                        }, {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.5,
-                            ease: "power2.inOut"
-                        });
-                    });
-                }
-            }
-        ]
-    });
-
-    // Handle WordPress admin bar if present
-    if (document.getElementById('wpadminbar')) {
-        document.getElementById('wpadminbar').style.position = 'fixed';
-        document.getElementById('wpadminbar').style.zIndex = '99999';
-    }
-    
-    console.log('Barba.js initialized for Master Basic WP Theme');
+  barba.init({
+    transitions: [
+      {
+        name: "fade-black",
+        async leave(data) {
+          // Mostra overlay nero in fade-in
+          await gsap.to(overlay, {
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.inOut",
+          });
+          data.current.container.remove();
+        },
+        async enter(data) {
+          // Fade-out dell’overlay nero
+          await gsap.to(overlay, {
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.inOut",
+          });
+        },
+      },
+    ],
+  });
 });
